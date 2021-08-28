@@ -64,9 +64,17 @@ export const Card = ({ id, text, index, moveCard }) => {
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = isDragging ? 0 : 1;
+    const opacity = isDragging ? 0.5 : 1;
+
     drag(drop(ref));
-    return (<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
-			{text}
-		</div>);
+
+    if (ref) {
+        var n = ref.current;
+        var m = document.createElement("div");
+        m.innerHTML = Math.random().toFixed(10);
+        if (n && n.childElementCount==0) n.appendChild(m);
+    }
+    return (<div class="item" ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+        {id} {text}
+    </div>);
 };
